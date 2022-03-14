@@ -17,9 +17,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-//    @Select("select ")
-//    String selectByUserId(String userId);
-//
-    @Select("select password from errand_user where user_id =#{userId}")
-    String selectPdByUserId(String userId);
+    @Select("select password from errand_user where username =#{username}")
+    String selectPdByUsername(String username);
+    @Select("select * from errand_user where username=#{username}")
+    User getUserByUsername(String username);
 }

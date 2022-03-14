@@ -31,9 +31,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (ans.equals("OK")){
             User user=new User();
             user.setUsername(registerDto.getUsername());
-            user.setUserId(registerDto.getUserId());
+            user.setNickName(registerDto.getNickName());
             user.setEmail(registerDto.getEmail());
             user.setPhoneNumber(registerDto.getPhoneNuber());
+            //存入加密后的密码
             user.setPassword(MD5Utils.code(registerDto.getPassword()));
 
             userMapper.insert(user);//写入数据库
@@ -46,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public String login(LoginDto loginDto) {
         //获取数据库中已加密密码
-        String password=userMapper.selectPdByUserId(loginDto.getUserId());
+        String password=userMapper.selectPdByUsername(loginDto.getUsername());
         if (password==null){
             return "用户名错误";
         }else if (password.equals(MD5Utils.code((loginDto.getPassword())))){
@@ -57,8 +58,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     }
 
+    @Override
+    public User getUserByusername(String username) {
+        User currentUser =userMapper.getUserByUsername(username);
+        return currentUser;
+    }
+
     private String istrue(RegisterDto loginDto) {
-        if (loginDto.getUserId()==null||loginDto.getUserId()==""){
+        if (loginDto.getUsername()==null||loginDto.getUsername()==""){
             return "用户名不能为空";
         }
         return "OK";

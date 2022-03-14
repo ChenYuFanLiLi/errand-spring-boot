@@ -17,4 +17,6 @@ public interface UserService extends IService<User> {
     String register (RegisterDto registerDto);
 
     String login(LoginDto loginDto);
+
+    User getUserByusername(String username);
 }

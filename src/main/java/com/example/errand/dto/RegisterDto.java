@@ -10,9 +10,9 @@ import lombok.ToString;
 @Data
 @ToString
 public class RegisterDto {
-    private String username;//用户名
+    private String nickName;//用户名
 
-    private String userId;//用户id
+    private String username;//用户id
     private String password;//密码
     private String secondPassword;//二次密码
     private String email;

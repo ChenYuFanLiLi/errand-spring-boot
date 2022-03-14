@@ -25,6 +25,8 @@ public class Order implements Serializable {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     private String orderId;
+    private String createUsername;
+    private String errandUsername;
     private String orderName;
     private String orderStatus;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

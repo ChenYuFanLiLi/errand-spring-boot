@@ -19,6 +19,12 @@ import com.example.errand.service.OrderService;
 import com.mysql.cj.result.SqlDateValueFactory;
 import lombok.Data;
 import lombok.SneakyThrows;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.subject.Subject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,10 +45,14 @@ public class UserMapperTest {
 
     @Test
     public void test1(){
-        List<User> userList=userService.list();
-        for (User user : userList){
-            System.out.println(user);
-        }
+        User user1 = new User();
+        user1=userService.getUserByusername("admin");
+        System.out.println(user1);
+
+//        List<User> userList=userService.list();
+//        for (User user : userList){
+//            System.out.println(user);
+//        }
     }
 
     @Test
@@ -50,7 +60,6 @@ public class UserMapperTest {
         RegisterDto registerDto =new RegisterDto();
         registerDto.setPassword("123");
         registerDto.setUsername("adf");
-        registerDto.setUserId("123");
         String obj= userService.register(registerDto);
 
     }
@@ -94,6 +103,31 @@ public class UserMapperTest {
         System.out.println("order-------------------------------");
         System.out.println(order.getOrderCreatedTime());
         orderMapper.insert(order);
+
+    }
+    @Test
+    public void ha(){
+        User user=new User();
+        user.setPassword("adf");
+        user.setUsername("adf");
+        //加密密码
+        String password = new SimpleHash("MD5", user.getPassword(), user.getUsername(), 1024).toString();
+        System.out.println(password);
+    }
+    @Test
+    public void testLogin(){
+//        User user=new User();
+//        user.setPassword("adf");
+//        user.setUsername("adf");
+//        Subject subject= SecurityUtils.getSubject();
+//        UsernamePasswordToken token=new UsernamePasswordToken(user.getUsername(), user.getPassword());
+//        subject.login(token);
+        String password="qwe";
+        String hashPassword=new SimpleHash("SHA-1",password,password,1).toString();
+        SimpleHash simpleHash = new SimpleHash("SHA-1",password,password,1);
+        System.out.println(simpleHash);
+        System.out.println(hashPassword);
+
 
     }
 }

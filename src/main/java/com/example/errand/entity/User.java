@@ -25,9 +25,9 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String userId;
-
     private String username;
+
+    private String nickName;
 
     private String password;
 
@@ -35,5 +35,6 @@ public class User implements Serializable {
 
     private Integer phoneNumber;
 
+    private Boolean locked;
 
 }
