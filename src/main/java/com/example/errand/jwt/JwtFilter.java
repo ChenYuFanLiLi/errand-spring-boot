@@ -142,6 +142,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request,
                                      ServletResponse response) {
+        System.out.println("利用Jwttoken登录失败");
         // 此处直接返回 false ，交给后面的  onAccessDenied()方法进行处理
         return false;
     }

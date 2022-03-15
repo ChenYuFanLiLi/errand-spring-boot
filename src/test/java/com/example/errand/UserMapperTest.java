@@ -14,6 +14,7 @@ import com.example.errand.dto.RegisterDto;
 import com.example.errand.entity.Order;
 import com.example.errand.entity.User;
 import com.example.errand.mapper.OrderMapper;
+import com.example.errand.service.RoleService;
 import com.example.errand.service.UserService;
 import com.example.errand.service.OrderService;
 import com.mysql.cj.result.SqlDateValueFactory;
@@ -34,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 public class UserMapperTest {
@@ -42,6 +44,8 @@ public class UserMapperTest {
     UserService userService;
     @Resource
     OrderService orderService;
+    @Autowired
+    RoleService roleService;
 
     @Test
     public void test1(){
@@ -91,18 +95,18 @@ public class UserMapperTest {
     @SneakyThrows
     @Test
     public void test4(){
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat();
-        String nowTime=sdf.format(date);
-        Date time= sdf.parse(nowTime);
-        OrderDto orderDto = new OrderDto();
-        orderDto.setOrderCreatedTime(time);
-        System.out.println(orderDto.getOrderCreatedTime());
-        Order order = new Order();
-        order.setOrderCreatedTime(orderDto.getOrderCreatedTime());
-        System.out.println("order-------------------------------");
-        System.out.println(order.getOrderCreatedTime());
-        orderMapper.insert(order);
+//        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat();
+//        String nowTime=sdf.format(date);
+//        Date time= sdf.parse(nowTime);
+//        OrderDto orderDto = new OrderDto();
+//        orderDto.setOrderCreatedTime(time);
+//        System.out.println(orderDto.getOrderCreatedTime());
+//        Order order = new Order();
+//        order.setOrderCreatedTime(orderDto.getOrderCreatedTime());
+//        System.out.println("order-------------------------------");
+//        System.out.println(order.getOrderCreatedTime());
+//        orderMapper.insert(order);
 
     }
     @Test
@@ -129,6 +133,11 @@ public class UserMapperTest {
         System.out.println(hashPassword);
 
 
+    }
+    @Test
+    public void testgetrole(){
+        Set<String> role=roleService.getRoleByUsername("qwe");
+        System.out.println(role);
     }
 }
 

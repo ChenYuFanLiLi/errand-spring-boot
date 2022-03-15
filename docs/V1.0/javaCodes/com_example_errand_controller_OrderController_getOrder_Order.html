@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Order</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class Order implements Serializable{
+
+    private int id; //自增主键
+    private String orderId; //
+    private String createUsername; //
+    private String errandUsername; //
+    private String orderName; //
+    private String orderStatus; //
+    private String orderCreatedTime; //
+    private String orderCompletionTime; //
+    private int orderAmount; //
+    private int orderDetailsId; //
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getOrderId(){
+        return orderId;
+    }
+
+    public void setOrderId(String orderId){
+        this.orderId = orderId;
+    }
+
+    public String getCreateUsername(){
+        return createUsername;
+    }
+
+    public void setCreateUsername(String createUsername){
+        this.createUsername = createUsername;
+    }
+
+    public String getErrandUsername(){
+        return errandUsername;
+    }
+
+    public void setErrandUsername(String errandUsername){
+        this.errandUsername = errandUsername;
+    }
+
+    public String getOrderName(){
+        return orderName;
+    }
+
+    public void setOrderName(String orderName){
+        this.orderName = orderName;
+    }
+
+    public String getOrderStatus(){
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus){
+        this.orderStatus = orderStatus;
+    }
+
+    public String getOrderCreatedTime(){
+        return orderCreatedTime;
+    }
+
+    public void setOrderCreatedTime(String orderCreatedTime){
+        this.orderCreatedTime = orderCreatedTime;
+    }
+
+    public String getOrderCompletionTime(){
+        return orderCompletionTime;
+    }
+
+    public void setOrderCompletionTime(String orderCompletionTime){
+        this.orderCompletionTime = orderCompletionTime;
+    }
+
+    public int getOrderAmount(){
+        return orderAmount;
+    }
+
+    public void setOrderAmount(int orderAmount){
+        this.orderAmount = orderAmount;
+    }
+
+    public int getOrderDetailsId(){
+        return orderDetailsId;
+    }
+
+    public void setOrderDetailsId(int orderDetailsId){
+        this.orderDetailsId = orderDetailsId;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

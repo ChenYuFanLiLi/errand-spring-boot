@@ -16,13 +16,12 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Result;
 
 /**
- * <p>
- *  前端控制器
- * </p>
- *
  * @author 陈宇凡
  * @since 2021-11-26
  */
@@ -34,7 +33,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     *
+     *用户注册
      * @param registerDto
      * @return
      */
@@ -58,7 +57,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public CommonResult Login(@RequestBody LoginDto loginDto){
+    public CommonResult Login(@RequestBody LoginDto loginDto, ServletResponse response){
 
         String ans=null;
         //获取当前用户主体
@@ -68,15 +67,23 @@ public class UserController {
         System.out.println("封装usernamepasswordtoken对象成功/n");
         try {
             subject.login(token);
-            System.out.println("登录成功subject.longin(token)");
+//            log.info("用户"+subject.getPrincipal()+"登录成功");
+//            if(subject.hasRole("custom")){
+//                log.info("您有custom角色");
+//            }else {
+//                log.info("您没有该角色");
+//            }
+//            if (subject.isPermitted("admin")){
+//                System.out.println("admin");
+//            }else {
+//                System.out.println("null");
+//            }
+            System.out.println("新的用户"+loginDto.getUsername()+"登录成功");
             ans="登录成功";
             //登录成功签发jwttoken
             String jwtToken= JwtUtils.sign(loginDto.getUsername(),JwtUtils.SECRET);
-            //添加请求头
-//            ((HttpServletResponse) response).setHeader(JwtUtils.AUTH_HEADER, jwtToken);
-//            CommonResult result = new CommonResult(token);
-
-            return CommonResult.success(token);
+            ((HttpServletResponse)response).setHeader(JwtUtils.AUTH_HEADER,jwtToken);
+            return CommonResult.success(jwtToken);
         }catch (UnknownAccountException uae){//账号不存在
             ans="用户名与密码不匹配，请检查后重新输入！";
         }catch (IncorrectCredentialsException ice){//账号与密码不匹配

@@ -12,12 +12,7 @@ import java.util.Date;
 @Data
 @ToString
 public class OrderDto {
-    private Integer id;
-    private String orderId;
-    private String orderName;
-    private String orderStatus;
-    private Date orderCreatedTime;
-    private Date orderCompletionTime;
+    private String orderName;//订单名称
     private Integer orderAmount;
     private Integer orderDetailsId;
 }

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class LoginDto {
-    private String  username;//用户账号
+    private String username;//用户名
     private String password;//密码
 
 }

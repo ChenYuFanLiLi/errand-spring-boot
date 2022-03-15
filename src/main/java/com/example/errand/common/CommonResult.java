@@ -11,14 +11,15 @@ import lombok.Getter;
 public class CommonResult {
     private Integer code;
     private String message;
-    private Object obj;
+    private Object data;
 
-    private CommonResult(Integer code, String message,Object obj){
+    private CommonResult(Integer code, String message, Object data){
         this.code=code;
         this.message=message;
-        this.obj=obj;
+        this.data=data;
 
     }
+
     public static CommonResult nohandler() {
         return new CommonResult(ResultCode.NOHANDLER.getCode(), ResultCode.NOHANDLER.getMessage(),null);
     }

@@ -16,6 +16,6 @@ import java.util.Set;
 @Mapper
 @Repository
 public interface RoleMapper extends BaseMapper<Role> {
-    @Select("select role form errand_user_role where username =#{username}")
+    @Select("select role from errand_user_role where username =#{username}")
     Set<String> getRoleByUsername(String username);
 }

@@ -5,6 +5,7 @@ import com.example.errand.dto.OrderDto;
 import com.example.errand.entity.Order;
 import com.example.errand.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ public class OrderController {
     private OrderService orderService;
 
     /**
+     * 添加订单
      * @param orderDto
      * @return
      */
@@ -36,13 +38,14 @@ public class OrderController {
     }
 
     /**
-     *
-     *
+     *列出订单
+     * @return 订单列表
      */
     @GetMapping("/getOrder")
+    @RequiresRoles(value = {"custom"})
     public List<Order> getOrder(){
+        System.out.println("成功获取订单");
         List<Order> orderList=orderService.list();
         return orderList;
     }
-
 }

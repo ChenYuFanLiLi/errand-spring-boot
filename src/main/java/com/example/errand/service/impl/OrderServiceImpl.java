@@ -28,7 +28,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         order.setOrderAmount(orderDto.getOrderAmount());
         order.setOrderName(orderDto.getOrderName());
-        order.setOrderStatus(orderDto.getOrderStatus());
         order.setOrderDetailsId(orderDto.getOrderDetailsId());
 
         order.setOrderCreatedTime(getTime());

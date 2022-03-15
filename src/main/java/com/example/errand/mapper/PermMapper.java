@@ -11,6 +11,6 @@ import java.util.Set;
  **/
 @Mapper
 public interface PermMapper {
-    @Select("select perm form errand_user_perm where username=#{username}")
+    @Select("select perm from errand_user_perm where username=#{username}")
     Set<String> getPermByUsername(String username);
 }
